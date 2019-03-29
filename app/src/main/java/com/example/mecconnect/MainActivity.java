@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button login, signup;
@@ -32,6 +34,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void userLogIn(){
+        //test
+        Intent intent = new Intent(this,ProfileActivity.class);
+        EditText em = findViewById(R.id.et_email);
+        EditText pw = findViewById(R.id.et_password);
+
+        String email = em.getText().toString();
+        String pwd = pw.getText().toString();
+
+        boolean validUser = AuthenticationManager.userDidEnterValidCredentials(email,pwd);
+        if(validUser) {
+//            String txt = AuthenticationManager.test();
+//
+//            intent.putExtra("db", txt);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this,"Wrong Credentials",Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
